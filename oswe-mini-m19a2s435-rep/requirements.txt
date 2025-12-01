@@ -1,0 +1,5 @@
+node >= 16
+npm
+
+# Node dependencies are in package.json
+# Use ./setup.sh to install

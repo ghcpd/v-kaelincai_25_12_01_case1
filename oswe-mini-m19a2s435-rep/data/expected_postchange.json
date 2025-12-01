@@ -1,0 +1,7 @@
+[
+  {
+    "id": "expected-1",
+    "customer": { "id": "c-1", "name": "Alice" },
+    "status": "scheduled"
+  }
+]

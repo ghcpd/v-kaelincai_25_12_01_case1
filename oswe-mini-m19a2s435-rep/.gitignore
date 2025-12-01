@@ -1,0 +1,27 @@
+# Node dependencies
+node_modules/
+
+# Logs and test artifacts
+logs/
+results/
+*.log
+
+# Coverage / instrumentation
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.*
+
+# Editor / OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Optional: lockfiles (keep if you want deterministic installs)
+# yarn.lock
+# pnpm-lock.yaml
