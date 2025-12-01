@@ -1,0 +1,549 @@
+CCJJLL630: Role & Scope
+Role: Senior architecture and delivery engineer.
+Mission: Analyze the legacy system and design a greenfield replacement (not an in-place refactor).
+Workspace: Create relevant project files under raptor-secondary.
+
+Object & Inputs
+Object: [issue_project]
+Input assets (optional): Codebase, APIs/Schemas, logs, monitoring, test commands, run recordings, etc. [[links or summaries]]
+
+Activities (Analyze → Conclude)
+3.1 Clarification & Data Collection
+
+List missing data/assumptions.
+Draft a collection checklist: code, logs, traffic, DB snapshots.
+3.2 Background Reconstruction (Model Output)
+
+From visible assets, infer legacy business context, core flows, boundaries, dependencies.
+Highlight uncertainties.
+3.3 Current-State Scan & Root-Cause Analysis
+
+Identify issues by category: Functionality, Performance, Reliability, Security, Maintainability, Cost.
+Provide a table: Category | Symptom | Likely Root Cause | Evidence / Needed Evidence.
+For high-priority issues: give hypothesis chains and validation methods; if issues are known, provide fix paths with causal chains.
+3.4 New System Design (Greenfield Replacement)
+
+Target state: capability boundaries, service decomposition, unified state machine, idempotency/retry/timeout/circuit-breaker strategies, compensation (Saga/outbox).
+Architecture and data flow: prose plus ASCII diagrams; key interfaces/Schemas/validation (including field constraints).
+Migration and parallel run (if needed): read/write cutover, backfill, dual-write/shadow traffic, rollback paths.
+3.5 Testing & Acceptance (Dynamically Generated)
+
+Derive at least 5 repeatable integration tests from crash points/risks.
+Each test case: Target issue | Preconditions/Data | Steps | Expected outcome | Observability assertions (logs/metrics/events).
+Coverage: idempotency; retry with backoff; timeout propagation/circuit breaking; compensation/Saga/outbox; audit/reconciliation; healthy path. If a risk does not exist, state why.
+Acceptance criteria: Given-When-Then or quantified SLO/SLA.
+AI Output Requirements (Appointment Scenario Focus)
+Lifecycle mapping: init → in-progress → success/failure; mark crash points (uncaught exceptions, timeout propagation, missing idempotency).
+Root-cause evidence: stack/log snippets; state snapshots (request ID, calendar response, DB state).
+Improvements: idempotency keys; retry + backoff; circuit breaker/timeout; transactional outbox or Saga compensation; unified state machine.
+Integration tests: as per 3.5.
+Structured logging schema: unique appointment/request ID; sensitive fields masked.
+One-click test fixture: single command runs all scenarios; outputs pass/fail and key metrics (success rate, retry counts, idempotency assertions).
+Deliverable Structure
+src/ # v2 integration/adaptation runtime code
+mocks/ # /api/v2 mock (immediate/pending/delayed)
+data/ # test_data.json, expected_postchange.json
+tests/ # test_post_change.py, etc.
+logs/ # log_post.txt
+results/ # results_post.json + timing
+requirements.txt
+setup.sh
+run_tests.sh
+Shared/ # Repo root
+test_data.json # ≥5 canonical cases
+run_all.sh # run Project A/B, collect artifacts
+compare_report.md # correctness diff, p50/p95 latency, errors/retries, rollout guidance
+results/ # results_pre.json, results_post.json, aggregated_metrics.json
+README.md # how to run/interpret, limits, rollout strategy
+
+Output Formatting
+
+Use structured numbering, tables preferred, explicit reasoning.
+If information is missing, provide clarifications and assumptions first.
+Describe scripts/commands with purpose.
+Provide API/data examples in JSON with field constraints.
+
+GitHub Copilot: Optimizing tool selection...
+
+Created 8 todos
+
+Starting: *Inspect legacy codebase* (1/8)
+
+Read [](file:///c%3A/workspace/issue_project)
+
+Read [](file:///c%3A/workspace/issue_project/README.md)
+
+Read [](file:///c%3A/workspace/issue_project/KNOWN_ISSUE.md)
+
+Read [](file:///c%3A/workspace/issue_project/src/compatActionLabel.js)
+
+Read [](file:///c%3A/workspace/issue_project/tests/compatActionLabel.test.js)
+
+Read [](file:///c%3A/workspace/issue_project/package.json)
+
+Completed: *Inspect legacy codebase* (1/8)
+
+Starting: *Assess current state & issues* (2/8)
+
+Completed: *Assess current state & issues* (2/8)
+
+Starting: *Design greenfield replacement* (3/8)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src)
+
+Created [](file:///c%3A/workspace/raptor-secondary/mocks)
+
+Created [](file:///c%3A/workspace/raptor-secondary/data)
+
+Created [](file:///c%3A/workspace/raptor-secondary/tests)
+
+Created [](file:///c%3A/workspace/raptor-secondary/logs)
+
+Created [](file:///c%3A/workspace/raptor-secondary/results)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/results)
+
+Starting: *Scaffold new project artifacts* (4/8)
+
+Created [](file:///c%3A/workspace/raptor-secondary/requirements.txt)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/action_label.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/idempotency.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/state_machine.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/circuit_breaker.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/retry.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/outbox.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/logger.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/src/service.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/mocks/mock_calendar_provider.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/data/test_data.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/data/expected_postchange.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/test_data.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/tests/conftest.py)
+
+Created [](file:///c%3A/workspace/raptor-secondary/tests/test_post_change.py)
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Created [](file:///c%3A/workspace/raptor-secondary/setup.sh)
+
+Created [](file:///c%3A/workspace/raptor-secondary/run_tests.sh)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/run_all.sh)
+
+Created [](file:///c%3A/workspace/raptor-secondary/README.md)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/compare_report.md)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/README.md)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_pre.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_post.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/results/aggregated_metrics.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/results/results_post.json)
+
+Created [](file:///c%3A/workspace/raptor-secondary/logs/log_post.txt)
+
+Completed: *Scaffold new project artifacts* (4/8)
+
+Starting: *Implement core v2 module* (5/8)
+
+Starting: *Author integration tests* (6/8)
+
+Ran terminal command: cd c:\workspace\issue_project; npm install
+
+Ran terminal command: npm test
+
+Configuring a Python Environment
+Completed with input: {
+  "resourcePath": "c:\\workspace\\raptor-secondary"
+}
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: cd c:\workspace\raptor-secondary; python -m pip install -r requirements.txt
+
+Ran terminal command: python -m pytest tests
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python -m pytest tests
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python -m pytest tests
+
+Read [](file:///c%3A/workspace/raptor-secondary/results/results_post.json)
+
+Read [](file:///c%3A/workspace/raptor-secondary/logs/log_post.txt)
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python -m pytest tests
+
+Read [](file:///c%3A/workspace/raptor-secondary/logs/log_post.txt)
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/aggregated_metrics.json)
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Created [](file:///c%3A/workspace/raptor-secondary/Shared/run_all.py)
+
+Ran terminal command: cd c:\workspace; python raptor-secondary\Shared\run_all.py
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python raptor-secondary\Shared\run_all.py
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python raptor-secondary\Shared\run_all.py
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python raptor-secondary\Shared\run_all.py
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_pre.json)
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python raptor-secondary\Shared\run_all.py
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_pre.json)
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_post.log#1-1), lines 1 to 11
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Ran terminal command: python raptor-secondary\Shared\run_all.py
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_post.log#1-1), lines 1 to 11
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_pre.json)
+
+Using "Apply Patch"
+
+
+```
+
+```
+
+
+Completed: *Design greenfield replacement* (3/8)
+
+Read [](file:///c%3A/workspace/raptor-secondary)
+
+Read [](file:///c%3A/workspace/raptor-secondary/raptor-secondary)
+
+Ran terminal command: Remove-Item -Recurse -Force c:\workspace\raptor-secondary\raptor-secondary
+
+Read [](file:///c%3A/workspace/raptor-secondary)
+
+## ✅ Scope & Artifacts
+
+| Folder/File | Purpose |
+|-------------|---------|
+| src (`action_label.py`, `service.py`, `idempotency.py`, `circuit_breaker.py`, `retry.py`, `outbox.py`, `logger.py`, `state_machine.py`) | Greenfield core: action parsing, appointment service orchestration, idempotency, retries, CB, compensation, structured logging |
+| mock_calendar_provider.py | Fake provider with scenarios (immediate, fail-once, timeout, partial success) |
+| test_data.json | ≥5 canonical scenarios |
+| test_post_change.py + `conftest.py` | Integration tests w/ metrics collector & log writer |
+| log_post.txt | Structured JSON logs (correlation & idempotency IDs) |
+| results_post.json | Per-scenario outcomes |
+| compare_report.md | Pre/Post diff, metrics, rollout guidance |
+| run_all.sh / `run_all.py` | One-click pre/post test runner & artifact collector |
+| `setup.sh`, `run_tests.sh`, `requirements.txt` | Bootstrap & test scripts |
+
+---
+
+## 🔍 Clarifications & Assumptions
+1. Domain: Appointment actions triggered by UI events with `data-action` labels.
+2. Legacy gap: IE11 path uses `srcElement` only; no idempotency/retries/logging.
+3. Demo uses in-memory stores (no real DB/queue); APIs simulated via mocks.
+
+---
+
+## 🧭 Legacy→Target Mapping
+
+| Category | Legacy Symptom | Root Cause | Evidence |
+|----------|----------------|-----------|----------|
+| Functionality | IE11 clicks no-op | `srcElement` ignored | compatActionLabel.test.js fails |
+| Reliability | Duplicate calls on replay | No idempotency | Missing store |
+| Resilience | Transient failures propagate | No retry/CB | N/A |
+| Observability | Hard to trace | No correlation IDs | N/A |
+
+**State machine**: `init → in_progress → completed | failed`  
+**Crash points**: missing idempotency, provider timeout, outbox failure, circuit open.
+
+---
+
+## 🏗️ Target Architecture
+
+```
+[UI Event]
+   |
+   v
+[action_label extractor]
+   |
+   v
+[AppointmentService]
+   |--(IdempotencyStore)
+   |--(State machine)
+   |--(Retry + CircuitBreaker)
+   |--(Outbox / audit log)
+   |
+   v
+[CalendarProvider]
+```
+
+- **Idempotency**: `Idempotency-Key` short-circuits completed/failed requests.
+- **Retries**: Exponential backoff (default 3); **Circuit breaker** threshold 3, 5s cooldown.
+- **Compensation**: `cancel_appointment` if downstream failure after creation.
+- **Structured logging**: `{correlation_id, idempotency_key, action_label, retries, appointment_id}`; mask sensitive fields.
+- **Migration**: Shadow reads, dual-write with idempotency, backfill via replays, rollback via traffic splitter.
+
+---
+
+## 🧪 Tests & Acceptance (Integration)
+
+| # | Target | Preconditions | Steps | Expected | Observability |
+|---|--------|---------------|-------|----------|---------------|
+| 1 | Healthy path | `data-action` on `target` | Create | `completed` | Log w/ IDs |
+| 2 | Retry + idempotency | Provider `fail_once_then_success` | Create twice same key | One provider success; replay hits idempotency | Log idempotent_hit; retries=2 |
+| 3 | Timeout + CB | Provider `always_timeout`, attempts=2 | Create twice | `failed`, error `retry_exhausted`; replay no provider call | Log retry_exhausted |
+| 4 | Compensation | Outbox fails | Create | `failed`; cancel invoked | Log compensation |
+| 5 | Legacy IE11 | `srcElement` only | Create | `completed` | Log success |
+
+**Acceptance**:  
+- Replays do **not** hit provider on completed/failed keys.  
+- Retries capped; `retry_exhausted` surfaced.  
+- CB opens on threshold, short-circuits.  
+- Compensation executed on partial failure.  
+- Structured logs emit correlation/idempotency IDs per request.
+
+---
+
+## 📈 Metrics (Post)
+
+| Metric | Value |
+|--------|-------|
+| Success rate | **1.0** (5/5) |
+| Avg retries | **1.4** |
+| Max retries | **2** |
+| p50 / p95 latency | n/a (unit scope) |
+
+Artifacts: aggregated_metrics.json, results_post.json, log_post.txt.
+
+---
+
+## 🧰 How to Run
+
+**Windows (PowerShell):**
+```powershell
+cd C:\workspace
+python raptor-secondary\Shared\run_all.py   # runs legacy + new, writes Shared/results/
+```
+
+**WSL/Linux/macOS:**
+```bash
+cd raptor-secondary
+./setup.sh
+./run_tests.sh
+./Shared/run_all.sh    # legacy+new, artifacts in Shared/results/
+```
+
+---
+
+## 🧪 Test Evidence
+
+- **Legacy** (issue_project): `npm test` → ❌ 2 failing (`srcElement` path). Logged in results_pre.json.
+- **New** (raptor-secondary): `python -m pytest tests` → ✅ 5 passed. Logs/results captured.
+
+---
+
+## 📄 Notes & Limits
+- In-memory stores only; swap with persisted DB/redis/outbox for production.
+- No real HTTP API; modules are orchestration-ready.
+- Optional: add OpenAPI/FastAPI wrapper, real queue, persistent idempotency store.
+
+---
+
+## 📦 Completion Summary
+- Designed and implemented a greenfield appointment action service with idempotency, retries, circuit breaker, compensation, and structured logging.
+- Added ≥5 integration tests covering healthy path, idempotency, retries, timeouts/CB, compensation, and legacy IE11 fallback.
+- Delivered one-click test fixture and comprehensive artifacts under raptor-secondary and `Shared/`.
+- Verified with both legacy Node tests (expected fail) and new Python tests (pass).
+
+Made changes.
+
+CCJJLL630: Please execute a full validation of the completed project.
+Your tasks include:
+Run the entire project using the provided environment setup and execution scripts.
+Verify that the system launches successfully without errors.
+Execute all automated test cases and ensure they all pass.
+Capture the outputs, logs, and any error traces if failures occur.
+Confirm that the project meets the expected functionality and behaves consistently under all provided test scenarios.
+Summarize the runtime results and explicitly state whether all test cases passed.
+
+GitHub Copilot: Ran terminal command: cd C:\workspace\raptor-secondary; python -m pip install -r requirements.txt
+
+Ran terminal command: cd C:\workspace\issue_project; npm install
+
+Ran terminal command: npm test
+
+Ran terminal command: cd C:\workspace\raptor-secondary; python -m pytest tests
+
+Ran terminal command: cd C:\workspace; python raptor-secondary\Shared\run_all.py
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_pre.json)
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/results_post.json)
+
+Read [](file:///c%3A/workspace/raptor-secondary/Shared/results/aggregated_metrics.json)
+
+Read [](file:///c%3A/workspace/raptor-secondary/logs/log_post.txt#1-1), lines 1 to 21
+
+## ✅ Validation Run
+
+- Environment setup: `pip install -r requirements.txt` (Python 3.13.9) and `npm install` completed without errors.
+- Combined harness (run_all.py) executed:
+  - **Legacy** (issue_project): exit **1** (expected failures; known compatibility bug).
+  - **Greenfield** (raptor-secondary): exit **0**; all tests passed.
+
+---
+
+## 🧪 Test Results
+
+### Legacy (issue_project)
+| Status | Details |
+|--------|---------|
+| ❌ Failed | compatActionLabel.test.js (2 failures) |
+| Errors | `IE11-style events expose attributes only via srcElement`, `dataset fallback should read from srcElement` |
+| Artifact | results_pre.json |
+
+### Greenfield (raptor-secondary)
+| Scenario | State | Provider Calls | Retries |
+|----------|-------|----------------|---------|
+| healthy_path_immediate | completed | 1 | 1 |
+| idempotent_retry_success | completed | 2 | 2 |
+| timeout_and_circuit_breaker | failed (`retry_exhausted`) | 2 | 2 |
+| compensation_on_partial_success | failed (`outbox failure`, compensated) | 1 | 1 |
+| legacy_event_srcElement | completed | 1 | 1 |
+
+- ✅ **All 5 greenfield tests passed** (`python -m pytest tests`).
+- Aggregated metrics: `{ total: 5, passed: 5, failed: 0, success_rate: 1.0, retries: { avg: 1.4, max: 2 } }`.
+
+Artifacts:
+- Results: results_post.json
+- Metrics: aggregated_metrics.json
+- Logs (structured JSON): log_post.txt
+
+---
+
+## 📂 Key Artifacts
+
+| File | Description |
+|------|-------------|
+| results_pre.json | Legacy test outcomes (expected failures) |
+| results_post.json | Scenario-by-scenario greenfield results |
+| aggregated_metrics.json | Summary metrics |
+| log_post.txt | Structured logs with `correlation_id` & `idempotency_key` |
+
+---
+
+## 📌 Notes
+
+- The greenfield system behaves consistently across all provided scenarios, including idempotency, retries, circuit breaking, compensation, and legacy `srcElement` parsing.
+- Legacy project remains failing due to the known compatibility issue (documented in KNOWN_ISSUE.md).
+
+**Conclusion:** ✅ Greenfield validation successful; ❌ Legacy still failing as expected.
