@@ -1,0 +1,82 @@
+[
+  {
+    "scenario": "healthy_path_immediate",
+    "description": "Immediate provider success with modern event target",
+    "event": {
+      "target": {"getAttribute": null, "dataset": {"action": "create-appointment"}}
+    },
+    "payload": {
+      "user_id": "u1",
+      "slot": "2025-12-01T10:00:00Z",
+      "attribute": "data-action",
+      "max_attempts": 3
+    },
+    "idempotency_key": "idem-healthy-1",
+    "provider_scenario": "immediate",
+    "expected": {"state": "completed"}
+  },
+  {
+    "scenario": "idempotent_retry_success",
+    "description": "Transient timeout succeeds on retry and idempotent replay returns stored result",
+    "event": {
+      "target": {"dataset": {"action": "create-appointment"}}
+    },
+    "payload": {
+      "user_id": "u2",
+      "slot": "2025-12-01T11:00:00Z",
+      "attribute": "data-action",
+      "max_attempts": 3
+    },
+    "idempotency_key": "idem-retry-1",
+    "provider_scenario": "fail_once_then_success",
+    "expected": {"state": "completed", "retries": 2}
+  },
+  {
+    "scenario": "timeout_and_circuit_breaker",
+    "description": "Provider always times out, retries exhaust and circuit opens",
+    "event": {
+      "target": {"dataset": {"action": "create-appointment"}}
+    },
+    "payload": {
+      "user_id": "u3",
+      "slot": "2025-12-01T12:00:00Z",
+      "attribute": "data-action",
+      "max_attempts": 2
+    },
+    "idempotency_key": "idem-timeout-1",
+    "provider_scenario": "always_timeout",
+    "expected": {"state": "failed", "error": "retry_exhausted"}
+  },
+  {
+    "scenario": "compensation_on_partial_success",
+    "description": "Success then downstream failure triggers compensation",
+    "event": {
+      "currentTarget": {"dataset": {"action": "create-appointment"}}
+    },
+    "payload": {
+      "user_id": "u4",
+      "slot": "2025-12-01T13:00:00Z",
+      "attribute": "data-action",
+      "max_attempts": 1
+    },
+    "idempotency_key": "idem-comp-1",
+    "provider_scenario": "partial_success_then_fail_outbox",
+    "expected": {"state": "failed"}
+  },
+  {
+    "scenario": "legacy_event_srcElement",
+    "description": "Legacy IE11 event uses srcElement only",
+    "event": {
+      "srcElement": {"dataset": {"action": "create-appointment"}}
+    },
+    "payload": {
+      "user_id": "u5",
+      "slot": "2025-12-01T14:00:00Z",
+      "attribute": "data-action",
+      "max_attempts": 1
+    },
+    "idempotency_key": "idem-legacy-1",
+    "provider_scenario": "immediate",
+    "expected": {"state": "completed"}
+  }
+]

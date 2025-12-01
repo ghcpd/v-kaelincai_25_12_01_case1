@@ -1,0 +1,7 @@
+[
+  {"scenario": "healthy_path_immediate", "expected_state": "completed"},
+  {"scenario": "idempotent_retry_success", "expected_state": "completed", "expected_retries": 2},
+  {"scenario": "timeout_and_circuit_breaker", "expected_state": "failed", "expected_error": "retry_exhausted"},
+  {"scenario": "compensation_on_partial_success", "expected_state": "failed"},
+  {"scenario": "legacy_event_srcElement", "expected_state": "completed"}
+]

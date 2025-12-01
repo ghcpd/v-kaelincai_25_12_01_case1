@@ -1,0 +1,64 @@
+[
+  {
+    "scenario": "healthy_path_immediate",
+    "response": {
+      "appointment_id": "4de1b4f9-f2fe-4fdd-a1f2-0373948e14a4",
+      "state": "completed",
+      "idempotency_key": "idem-healthy-1",
+      "retries": 1
+    },
+    "provider_calls": 1,
+    "passed": true,
+    "retries": 1
+  },
+  {
+    "scenario": "idempotent_retry_success",
+    "response": {
+      "appointment_id": "66ff6138-b357-4f2f-8925-9e968ea631ec",
+      "state": "completed",
+      "idempotency_key": "idem-retry-1",
+      "retries": 2
+    },
+    "provider_calls": 2,
+    "passed": true,
+    "replayed_state": "completed",
+    "retries": 2
+  },
+  {
+    "scenario": "timeout_and_circuit_breaker",
+    "response": {
+      "state": "failed",
+      "idempotency_key": "idem-timeout-1",
+      "error": "retry_exhausted",
+      "retries": 2
+    },
+    "provider_calls": 2,
+    "passed": true,
+    "replayed_state": "failed",
+    "retries": 2
+  },
+  {
+    "scenario": "compensation_on_partial_success",
+    "response": {
+      "state": "failed",
+      "idempotency_key": "idem-comp-1",
+      "error": "outbox failure",
+      "retries": 1
+    },
+    "provider_calls": 1,
+    "passed": true,
+    "retries": 1
+  },
+  {
+    "scenario": "legacy_event_srcElement",
+    "response": {
+      "appointment_id": "93f4b272-1c1a-47a9-83b9-063c3c619aea",
+      "state": "completed",
+      "idempotency_key": "idem-legacy-1",
+      "retries": 1
+    },
+    "provider_calls": 1,
+    "passed": true,
+    "retries": 1
+  }
+]

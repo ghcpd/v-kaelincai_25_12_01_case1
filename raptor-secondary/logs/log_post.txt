@@ -1,0 +1,42 @@
+{"message": "appointment_created", "taskName": null, "correlation_id": "8c7d2fde-1937-4d29-9995-672c16b15e01", "idempotency_key": "idem-healthy-1", "retries": 1, "appointment_id": "6aa7a966-eccf-4500-a9ce-71f5e1dbc82a"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "aaeef6e1-55e4-4a0f-a038-bde3e9bb6b00", "idempotency_key": "idem-retry-1", "retries": 2, "appointment_id": "5b04a4be-9435-4ebf-b694-e353db5c50aa"}
+{"message": "idempotent_hit", "taskName": null, "correlation_id": "aaeef6e1-55e4-4a0f-a038-bde3e9bb6b00", "idempotency_key": "idem-retry-1", "action_label": "create-appointment"}
+{"message": "retry_exhausted", "taskName": null, "correlation_id": "4ad9b41f-debd-4696-8cfe-4ec62d04a2a5", "idempotency_key": "idem-timeout-1", "retries": 2}
+{"message": "appointment_failed", "taskName": null, "correlation_id": "0177979a-7967-406e-84e3-2894af35e97e", "idempotency_key": "idem-comp-1", "error": "outbox failure", "retries": 1}
+{"message": "appointment_compensated", "taskName": null, "correlation_id": "0177979a-7967-406e-84e3-2894af35e97e", "idempotency_key": "idem-comp-1", "appointment_id": "a08bcd37-f942-4414-8304-cbd812b08814"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "abb6c631-0217-4348-9312-396023edda57", "idempotency_key": "idem-legacy-1", "retries": 1, "appointment_id": "1c1758f2-8eb0-449a-aebb-8c1d718fbfe9"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "acbd4f70-deac-4e4f-94cd-476c32072ea8", "idempotency_key": "idem-healthy-1", "retries": 1, "appointment_id": "03f3761a-34f2-4184-8663-f890465b50b7"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "a17c3e53-2529-46d4-a977-dc26456d76b8", "idempotency_key": "idem-retry-1", "retries": 2, "appointment_id": "6eb19f4f-ce37-4130-9911-0e7a1c796f85"}
+{"message": "idempotent_hit", "taskName": null, "correlation_id": "a17c3e53-2529-46d4-a977-dc26456d76b8", "idempotency_key": "idem-retry-1", "action_label": "create-appointment"}
+{"message": "retry_exhausted", "taskName": null, "correlation_id": "6402dc81-e53b-4a9b-a633-565b2f48966c", "idempotency_key": "idem-timeout-1", "retries": 2}
+{"message": "appointment_failed", "taskName": null, "correlation_id": "0f37581f-1594-4d91-ad5e-5942a07fe39b", "idempotency_key": "idem-comp-1", "error": "outbox failure", "retries": 1}
+{"message": "appointment_compensated", "taskName": null, "correlation_id": "0f37581f-1594-4d91-ad5e-5942a07fe39b", "idempotency_key": "idem-comp-1", "appointment_id": "01353b1c-c3a3-4c8a-b938-f70f6aaca32c"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "7a924a34-81b5-47be-bada-a3926b1c059f", "idempotency_key": "idem-legacy-1", "retries": 1, "appointment_id": "20f267d4-03fe-41d3-a951-1ca6096327e2"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "a7c4efc5-e700-46fc-8182-257e30a4de7c", "idempotency_key": "idem-healthy-1", "retries": 1, "appointment_id": "41d7aa91-fe18-4d82-b597-cf1f729e0e3a"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "ddd0f926-eb7f-4c1b-8f07-35e0daebd724", "idempotency_key": "idem-retry-1", "retries": 2, "appointment_id": "77de2c72-2d63-41b2-9bb1-d80da2fa9373"}
+{"message": "idempotent_hit", "taskName": null, "correlation_id": "ddd0f926-eb7f-4c1b-8f07-35e0daebd724", "idempotency_key": "idem-retry-1", "action_label": "create-appointment"}
+{"message": "retry_exhausted", "taskName": null, "correlation_id": "9aff0fd6-512e-4b85-a836-cef59a4e8666", "idempotency_key": "idem-timeout-1", "retries": 2}
+{"message": "appointment_failed", "taskName": null, "correlation_id": "f799ba88-6637-431b-9206-dfb9067dad1a", "idempotency_key": "idem-comp-1", "error": "outbox failure", "retries": 1}
+{"message": "appointment_compensated", "taskName": null, "correlation_id": "f799ba88-6637-431b-9206-dfb9067dad1a", "idempotency_key": "idem-comp-1", "appointment_id": "532add85-5961-4581-b537-dbf3660dd77a"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "d06e899a-ff55-453e-8bcf-801715a3bd19", "idempotency_key": "idem-legacy-1", "retries": 1, "appointment_id": "6105c90d-661b-4586-9894-dbb7b1ae4e2d"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "b9b83ec8-47c7-45b3-b114-18991f4acbed", "idempotency_key": "idem-healthy-1", "retries": 1, "appointment_id": "8fa4609f-b99a-46f7-b438-a50d0d407a41"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "4966ae20-070f-46d9-a237-17392dc8f446", "idempotency_key": "idem-retry-1", "retries": 2, "appointment_id": "8f95f3f1-8fcd-4b4d-a4bd-7794bfee8182"}
+{"message": "idempotent_hit", "taskName": null, "correlation_id": "4966ae20-070f-46d9-a237-17392dc8f446", "idempotency_key": "idem-retry-1", "action_label": "create-appointment"}
+{"message": "retry_exhausted", "taskName": null, "correlation_id": "6eca094e-20c9-4afe-a41f-479108e5d09f", "idempotency_key": "idem-timeout-1", "retries": 2}
+{"message": "appointment_failed", "taskName": null, "correlation_id": "d80c72a4-180a-429a-966f-d9f4b24c6407", "idempotency_key": "idem-comp-1", "error": "outbox failure", "retries": 1}
+{"message": "appointment_compensated", "taskName": null, "correlation_id": "d80c72a4-180a-429a-966f-d9f4b24c6407", "idempotency_key": "idem-comp-1", "appointment_id": "c2dd4a00-cfb3-4e2b-9ff9-f637315133a8"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "31d9413c-3eb1-4725-bec0-cce8b3e62c9d", "idempotency_key": "idem-legacy-1", "retries": 1, "appointment_id": "a0110d2a-4bcc-496a-9fc0-a78b2a90cb04"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "7a948048-5f8c-4dad-b5ce-685901d3f318", "idempotency_key": "idem-healthy-1", "retries": 1, "appointment_id": "61d4a7f7-73a8-4173-a102-18667660c9b0"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "27e8068c-5ca2-450f-8ffb-8d7d6f32aa57", "idempotency_key": "idem-retry-1", "retries": 2, "appointment_id": "55fa2ac6-d579-4220-8e29-fd7dfa303581"}
+{"message": "idempotent_hit", "taskName": null, "correlation_id": "27e8068c-5ca2-450f-8ffb-8d7d6f32aa57", "idempotency_key": "idem-retry-1", "action_label": "create-appointment"}
+{"message": "retry_exhausted", "taskName": null, "correlation_id": "e583acd9-a32c-4a59-8006-762575816b3a", "idempotency_key": "idem-timeout-1", "retries": 2}
+{"message": "appointment_failed", "taskName": null, "correlation_id": "442cabb5-431d-4882-b47e-a4895be157ef", "idempotency_key": "idem-comp-1", "error": "outbox failure", "retries": 1}
+{"message": "appointment_compensated", "taskName": null, "correlation_id": "442cabb5-431d-4882-b47e-a4895be157ef", "idempotency_key": "idem-comp-1", "appointment_id": "097d7829-ae98-4c28-b390-ccca6f1415f9"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "25296888-0565-4398-add8-8fe070bc7a24", "idempotency_key": "idem-legacy-1", "retries": 1, "appointment_id": "d87ef12d-fac7-4ad3-ae0d-8747eaab9e42"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "c02fcf7c-15a1-4fed-86c0-2fafc56a7797", "idempotency_key": "idem-healthy-1", "retries": 1, "appointment_id": "4de1b4f9-f2fe-4fdd-a1f2-0373948e14a4"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "f7ec18d7-bb61-4cee-8912-1d2fd013d756", "idempotency_key": "idem-retry-1", "retries": 2, "appointment_id": "66ff6138-b357-4f2f-8925-9e968ea631ec"}
+{"message": "idempotent_hit", "taskName": null, "correlation_id": "f7ec18d7-bb61-4cee-8912-1d2fd013d756", "idempotency_key": "idem-retry-1", "action_label": "create-appointment"}
+{"message": "retry_exhausted", "taskName": null, "correlation_id": "f5bf79d7-04e3-49ee-9523-29ae3d9012ef", "idempotency_key": "idem-timeout-1", "retries": 2}
+{"message": "appointment_failed", "taskName": null, "correlation_id": "007e8380-5ecb-4869-ae89-9405fbe4a51e", "idempotency_key": "idem-comp-1", "error": "outbox failure", "retries": 1}
+{"message": "appointment_compensated", "taskName": null, "correlation_id": "007e8380-5ecb-4869-ae89-9405fbe4a51e", "idempotency_key": "idem-comp-1", "appointment_id": "ee9e644e-5e56-47a0-816f-e7c356c77361"}
+{"message": "appointment_created", "taskName": null, "correlation_id": "356871d7-fc57-4263-923e-bc5ce1405a07", "idempotency_key": "idem-legacy-1", "retries": 1, "appointment_id": "93f4b272-1c1a-47a9-83b9-063c3c619aea"}

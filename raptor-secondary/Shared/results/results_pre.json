@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "failures": [
+    "\u2139 fail 2",
+    "\u2716 failing tests:",
+    "AssertionError [ERR_ASSERTION]: IE11-style events expose attributes only via srcElement",
+    "AssertionError [ERR_ASSERTION]: dataset fallback should read from srcElement for compatibility"
+  ]
+}
