@@ -1,0 +1,32 @@
+[
+  {
+    "id": "case-1",
+    "event": { "srcElement": { "getAttribute": "legacy-submit", "dataset": { "action": "legacy-dataset" } } },
+    "attribute": "data-action",
+    "expected": "legacy-submit"
+  },
+  {
+    "id": "case-2",
+    "event": { "target": { "getAttribute": "modern-submit", "dataset": { "action": "modern-dataset" } } },
+    "attribute": "data-action",
+    "expected": "modern-submit"
+  },
+  {
+    "id": "case-3",
+    "event": { "target": { "getAttribute": "retry-action" } },
+    "attribute": "data-action",
+    "expected": "RETRY-ACTION"
+  },
+  {
+    "id": "case-4",
+    "event": { "target": { "getAttribute": "slow-action" } },
+    "attribute": "data-action",
+    "expected": "slow-action"
+  },
+  {
+    "id": "case-5",
+    "event": { "target": { "dataset": { "action": "dataset-only" } } },
+    "attribute": "data-action",
+    "expected": "dataset-only"
+  }
+]

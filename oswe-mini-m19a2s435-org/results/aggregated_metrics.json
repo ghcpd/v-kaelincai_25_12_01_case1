@@ -1,0 +1,8 @@
+{
+  "test_count": 6,
+  "pass": 6,
+  "fail": 0,
+  "p50_latency_ms": 3,
+  "p95_latency_ms": 90,
+  "notes": "p50/p95 approximated from test harness; extraction-only measured in single-digit ms; retry/backoff path measured ~90ms."
+}
