@@ -1,0 +1,5 @@
+[
+  {"name": "legacy_attr", "expectedLabel": "legacy-submit"},
+  {"name": "legacy_dataset", "expectedLabel": "legacy-dataset"},
+  {"name": "modern_target_attr", "expectedLabel": "modern-submit"}
+]

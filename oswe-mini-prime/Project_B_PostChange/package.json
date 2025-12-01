@@ -1,0 +1,11 @@
+{
+  "name": "project-b-postchange",
+  "version": "0.1.0",
+  "description": "Greenfield replacement (v2) for action label extraction with resilience patterns",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test",
+    "run": "node src/index.js"
+  },
+  "license": "MIT"
+}

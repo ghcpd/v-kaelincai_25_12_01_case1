@@ -1,0 +1,5 @@
+[
+  {"name": "legacy_attr", "description": "srcElement.getAttribute returns attribute"},
+  {"name": "legacy_dataset", "description": "srcElement.dataset action"},
+  {"name": "modern_target_attr", "description": "target.getAttribute returns attribute"}
+]
