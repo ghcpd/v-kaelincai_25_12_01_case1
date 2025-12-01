@@ -1,0 +1,8 @@
+{
+  "pre": {"tests":2, "pass":0, "fail":2, "duration_ms":79.8707},
+  "post": {"tests":6, "pass":6, "fail":0, "duration_ms":283.8908},
+  "difference": {
+    "passDelta": 6,
+    "failDelta": -2
+  }
+}

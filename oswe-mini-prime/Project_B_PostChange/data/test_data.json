@@ -1,0 +1,20 @@
+[
+  {
+    "name": "legacy_attr",
+    "event": {"srcElement": {"getAttribute": "legacy-submit", "getAttributeImpl": true}},
+    "attribute": "data-action",
+    "requestId": "rid-legacy-1"
+  },
+  {
+    "name": "legacy_dataset",
+    "event": {"srcElement": {"getAttributeImpl": false, "dataset": {"action": "legacy-dataset"}}},
+    "attribute": "data-action",
+    "requestId": "rid-legacy-2"
+  },
+  {
+    "name": "modern_target_attr",
+    "event": {"target": {"getAttribute": "modern-submit", "getAttributeImpl": true}},
+    "attribute": "data-action",
+    "requestId": "rid-modern-1"
+  }
+]
