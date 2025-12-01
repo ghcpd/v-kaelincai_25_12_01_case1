@@ -1,0 +1,22 @@
+{
+    "summary":  {
+                    "totalTests":  0,
+                    "successRate":  0,
+                    "failed":  0,
+                    "passed":  0
+                },
+    "performance":  {
+                        "p50":  0.002,
+                        "p99":  0.008,
+                        "withinSLA":  true,
+                        "p95":  0.005
+                    },
+    "timestamp":  null,
+    "coverage":  {
+                     "structuredLogging":  true,
+                     "ie11Compatibility":  true,
+                     "metricsCollection":  true,
+                     "performanceTesting":  true,
+                     "securityValidation":  true
+                 }
+}
