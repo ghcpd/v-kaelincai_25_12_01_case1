@@ -1,0 +1,22 @@
+[
+  {
+    "id": "case-1",
+    "label": "legacy-submit"
+  },
+  {
+    "id": "case-2",
+    "label": "MODERN-SUBMIT"
+  },
+  {
+    "id": "case-3",
+    "label": "RETRY-ACTION"
+  },
+  {
+    "id": "case-4",
+    "label": "slow-action"
+  },
+  {
+    "id": "case-5",
+    "label": "dataset-only"
+  }
+]

@@ -1,0 +1,3 @@
+# Node dependencies are managed by package.json
+node >= 18
+npm >= 9

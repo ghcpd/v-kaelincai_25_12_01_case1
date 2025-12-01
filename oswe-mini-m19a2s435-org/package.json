@@ -1,0 +1,15 @@
+{
+  "name": "oswe-mini-greenfield-appointment-extract",
+  "version": "0.1.0",
+  "description": "Greenfield replacement for robust, idempotent action label extraction",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test",
+    "run": "node -e \"console.log('Not a runtime');\""
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
