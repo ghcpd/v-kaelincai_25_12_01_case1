@@ -1,0 +1,36 @@
+{
+  "name": "action-label-service-v2",
+  "version": "2.0.0",
+  "description": "Resilient, observable browser event action label service (v2 greenfield replacement)",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test tests/**/*.js",
+    "test:watch": "nodemon --exec 'npm test'",
+    "test:coverage": "c8 npm test",
+    "lint": "eslint src tests",
+    "start": "node src/index.js",
+    "demo": "node demo/run_demo.js",
+    "compare": "node scripts/compare_v1_v2.js"
+  },
+  "keywords": [
+    "browser",
+    "events",
+    "action-label",
+    "resilience",
+    "circuit-breaker",
+    "idempotency"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "c8": "^7.12.0",
+    "eslint": "^8.40.0",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "testCases": [
+    {
+      "name": "Chrome Happy Path",
+      "browser": "Chrome",
+      "event": {
+        "type": "click",
+        "target": {
+          "tagName": "BUTTON",
+          "id": "btn-submit",
+          "dataset": { "action": "submit" }
+        }
+      },
+      "attribute": "data-action",
+      "expectedLabel": "submit",
+      "expectedSuccess": true,
+      "expectedPath": "target",
+      "maxLatencyMs": 2
+    },
+    {
+      "name": "IE11 Legacy Fallback",
+      "browser": "IE11",
+      "event": {
+        "type": "click",
+        "srcElement": {
+          "tagName": "BUTTON",
+          "id": "btn-confirm",
+          "getAttribute": "confirm"
+        }
+      },
+      "attribute": "data-action",
+      "expectedLabel": "confirm",
+      "expectedSuccess": true,
+      "expectedPath": "srcElement",
+      "maxLatencyMs": 2
+    },
+    {
+      "name": "Timeout Scenario",
+      "browser": "Chrome",
+      "event": {
+        "type": "click",
+        "target": {
+          "tagName": "BUTTON",
+          "id": "btn-slow",
+          "slowRead": 20
+        }
+      },
+      "attribute": "data-action",
+      "timeout": 5,
+      "expectedSuccess": false,
+      "expectedError": "timeout",
+      "maxLatencyMs": 10
+    },
+    {
+      "name": "Transient Failure",
+      "browser": "Chrome",
+      "event": {
+        "type": "click",
+        "target": {
+          "tagName": "BUTTON",
+          "id": "btn-flaky",
+          "flaky": true,
+          "failCount": 2
+        }
+      },
+      "attribute": "data-action",
+      "retries": 3,
+      "expectedLabel": "action",
+      "expectedSuccess": true
+    },
+    {
+      "name": "Missing Target",
+      "browser": "Unknown",
+      "event": {
+        "type": "click",
+        "target": null,
+        "srcElement": null,
+        "currentTarget": null
+      },
+      "attribute": "data-action",
+      "expectedSuccess": false,
+      "expectedError": "not_found"
+    }
+  ]
+}
