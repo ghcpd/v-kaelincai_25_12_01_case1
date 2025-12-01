@@ -1,0 +1,16 @@
+{
+  "name": "browser-compat-bug-demo",
+  "version": "0.1.0",
+  "description": "Minimal repro project for a browser compatibility bug",
+  "main": "src/compatActionLabel.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "compatibility",
+    "bug",
+    "browser"
+  ],
+  "author": "",
+  "license": "MIT"
+}
