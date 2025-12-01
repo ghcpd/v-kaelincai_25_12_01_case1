@@ -1,0 +1,183 @@
+{
+  "version": "1.0.0",
+  "description": "Canonical test cases for event label extraction across browsers",
+  "testCases": [
+    {
+      "id": "TC001",
+      "name": "IE11 getAttribute extraction",
+      "browser": "ie11",
+      "event": {
+        "srcElement": {
+          "tagName": "BUTTON",
+          "id": "submit-btn",
+          "className": "btn btn-primary",
+          "getAttribute": "function:data-action=>legacy-submit"
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "legacy-submit",
+      "expectedSuccess": true,
+      "expectedMethod": "srcElement->getAttribute"
+    },
+    {
+      "id": "TC002",
+      "name": "IE11 dataset extraction",
+      "browser": "ie11",
+      "event": {
+        "srcElement": {
+          "tagName": "BUTTON",
+          "dataset": {
+            "action": "legacy-dataset-value"
+          }
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "legacy-dataset-value",
+      "expectedSuccess": true,
+      "expectedMethod": "srcElement->dataset"
+    },
+    {
+      "id": "TC003",
+      "name": "Chrome target extraction",
+      "browser": "chrome",
+      "event": {
+        "target": {
+          "tagName": "BUTTON",
+          "getAttribute": "function:data-action=>modern-action"
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "modern-action",
+      "expectedSuccess": true,
+      "expectedMethod": "target->getAttribute"
+    },
+    {
+      "id": "TC004",
+      "name": "No target - graceful failure",
+      "browser": "unknown",
+      "event": {
+        "type": "click",
+        "timestamp": 1701435600000
+      },
+      "attribute": "data-action",
+      "expectedValue": "",
+      "expectedSuccess": false,
+      "expectedMethod": "none"
+    },
+    {
+      "id": "TC005",
+      "name": "XSS payload sanitization",
+      "browser": "chrome",
+      "event": {
+        "target": {
+          "getAttribute": "function:data-action=><script>alert('XSS')</script>safe-value"
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "safe-value",
+      "expectedSuccess": true,
+      "expectedMethod": "target->getAttribute",
+      "sanitized": true
+    },
+    {
+      "id": "TC006",
+      "name": "Firefox dataset extraction",
+      "browser": "firefox",
+      "event": {
+        "target": {
+          "dataset": {
+            "actionLabel": "firefox-action"
+          }
+        }
+      },
+      "attribute": "data-action-label",
+      "expectedValue": "firefox-action",
+      "expectedSuccess": true,
+      "expectedMethod": "target->dataset"
+    },
+    {
+      "id": "TC007",
+      "name": "Safari currentTarget fallback",
+      "browser": "safari",
+      "event": {
+        "target": null,
+        "currentTarget": {
+          "getAttribute": "function:data-action=>fallback-action"
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "fallback-action",
+      "expectedSuccess": true,
+      "expectedMethod": "currentTarget->getAttribute"
+    },
+    {
+      "id": "TC008",
+      "name": "Empty attribute value",
+      "browser": "chrome",
+      "event": {
+        "target": {
+          "getAttribute": "function:data-action=>"
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "",
+      "expectedSuccess": false,
+      "expectedMethod": "failed"
+    },
+    {
+      "id": "TC009",
+      "name": "Long value validation",
+      "browser": "chrome",
+      "event": {
+        "target": {
+          "getAttribute": "function:data-action=>this-is-a-very-long-attribute-value-that-should-exceed-the-maximum-allowed-length-configured-in-the-validator-service-for-security-and-performance-reasons-and-therefore-should-be-rejected-by-the-validation-layer-to-prevent-potential-issues"
+        }
+      },
+      "attribute": "data-action",
+      "expectedValue": "",
+      "expectedSuccess": false,
+      "expectedMethod": "target->getAttribute",
+      "validationFailed": true,
+      "config": {
+        "validation": {
+          "maxValueLength": 256
+        }
+      }
+    },
+    {
+      "id": "TC010",
+      "name": "Multiple attributes on same element",
+      "browser": "chrome",
+      "event": {
+        "target": {
+          "getAttribute": "function:multiple",
+          "dataset": {
+            "action": "primary-action",
+            "testid": "test-123",
+            "label": "Submit Form"
+          }
+        }
+      },
+      "attributes": {
+        "data-action": "primary-action",
+        "data-testid": "test-123",
+        "data-label": "Submit Form"
+      },
+      "expectedSuccess": true
+    }
+  ],
+  "performanceBaseline": {
+    "p50": 1.0,
+    "p95": 5.0,
+    "p99": 10.0,
+    "unit": "ms"
+  },
+  "successRateTarget": 99.9,
+  "browserDistribution": {
+    "chrome": 45,
+    "firefox": 20,
+    "safari": 15,
+    "edge": 15,
+    "ie11": 5
+  }
+}

@@ -1,0 +1,29 @@
+{
+    "features":  {
+                     "metrics":  "enabled",
+                     "validation":  "enabled",
+                     "logging":  "enabled",
+                     "sanitization":  "enabled"
+                 },
+    "version":  "2.0.0",
+    "compatibility":  {
+                          "edge":  "supported",
+                          "ie11":  "supported",
+                          "firefox":  "supported",
+                          "safari":  "supported",
+                          "chrome":  "supported"
+                      },
+    "timestamp":  null,
+    "performance":  {
+                        "p50":  0.002,
+                        "p99":  0.008,
+                        "unit":  "ms",
+                        "p95":  0.005
+                    },
+    "testRun":  {
+                    "failed":  0,
+                    "successRate":  0,
+                    "total":  0,
+                    "passed":  0
+                }
+}

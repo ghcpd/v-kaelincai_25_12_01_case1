@@ -1,0 +1,135 @@
+{
+  "version": "1.0.0",
+  "description": "Canonical test cases shared across Project A (legacy) and Project B (greenfield)",
+  "testCases": [
+    {
+      "id": "SHARED_TC001",
+      "name": "IE11 srcElement extraction",
+      "description": "Verify that IE11 events with only srcElement property are handled correctly",
+      "event": {
+        "browser": "ie11",
+        "hasTarget": false,
+        "hasSrcElement": true,
+        "hasCurrentTarget": false
+      },
+      "attribute": "data-action",
+      "expectedBehavior": {
+        "projectA": {
+          "success": false,
+          "value": "",
+          "reason": "Missing srcElement support"
+        },
+        "projectB": {
+          "success": true,
+          "value": "legacy-submit",
+          "method": "srcElement->getAttribute"
+        }
+      }
+    },
+    {
+      "id": "SHARED_TC002",
+      "name": "Chrome target extraction",
+      "description": "Verify modern browser event handling",
+      "event": {
+        "browser": "chrome",
+        "hasTarget": true,
+        "hasSrcElement": false,
+        "hasCurrentTarget": true
+      },
+      "attribute": "data-action",
+      "expectedBehavior": {
+        "projectA": {
+          "success": true,
+          "value": "modern-action"
+        },
+        "projectB": {
+          "success": true,
+          "value": "modern-action",
+          "method": "target->getAttribute"
+        }
+      }
+    },
+    {
+      "id": "SHARED_TC003",
+      "name": "Graceful degradation - no target",
+      "description": "Verify handling of malformed events",
+      "event": {
+        "browser": "unknown",
+        "hasTarget": false,
+        "hasSrcElement": false,
+        "hasCurrentTarget": false
+      },
+      "attribute": "data-action",
+      "expectedBehavior": {
+        "projectA": {
+          "success": false,
+          "value": ""
+        },
+        "projectB": {
+          "success": false,
+          "value": "",
+          "logged": true
+        }
+      }
+    },
+    {
+      "id": "SHARED_TC004",
+      "name": "Dataset attribute extraction",
+      "description": "Verify data-* attribute handling via dataset",
+      "event": {
+        "browser": "firefox",
+        "hasDataset": true
+      },
+      "attribute": "data-action",
+      "expectedBehavior": {
+        "projectA": {
+          "success": true,
+          "value": "dataset-value"
+        },
+        "projectB": {
+          "success": true,
+          "value": "dataset-value",
+          "method": "target->dataset"
+        }
+      }
+    },
+    {
+      "id": "SHARED_TC005",
+      "name": "Empty attribute value",
+      "description": "Verify handling of empty strings",
+      "event": {
+        "browser": "chrome",
+        "attributeValue": ""
+      },
+      "attribute": "data-action",
+      "expectedBehavior": {
+        "projectA": {
+          "success": false,
+          "value": ""
+        },
+        "projectB": {
+          "success": false,
+          "value": ""
+        }
+      }
+    }
+  ],
+  "comparisonMetrics": {
+    "functionalCorrectness": [
+      "SHARED_TC001",
+      "SHARED_TC002",
+      "SHARED_TC003",
+      "SHARED_TC004",
+      "SHARED_TC005"
+    ],
+    "performanceMetrics": {
+      "latencyP50": { "target": 2.0, "unit": "ms" },
+      "latencyP95": { "target": 5.0, "unit": "ms" },
+      "latencyP99": { "target": 10.0, "unit": "ms" }
+    },
+    "reliabilityMetrics": {
+      "successRate": { "target": 99.9, "unit": "%" },
+      "errorRate": { "target": 0.1, "unit": "%" }
+    }
+  }
+}
